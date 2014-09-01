@@ -31,17 +31,30 @@ MyStuff.prototype.sayMyName = function() {
   return this.foo + ' ' + this.bar;
 };
 
+var testObj = new MyStuff('sean', 'voeller');
+
 exports.jsonclone = {
   setUp: function(done) {
     // setup here
     done();
   },
-  'jsonclone - preserve properties': function(test) {
+  'jsonclone - clone preserves function properties': function(test) {
     test.expect(1);
-    // tests here
-    var theClone = jsonclone.clone(new MyStuff('sean', 'voeller'));
+    var theClone = jsonclone.clone(testObj);
     test.equal(theClone.sayMyName(), 'sean voeller', 'should be sean voeller');
-    //test.equal(jsonclone.jsonclone(), 'awesome', 'should be awesome.');
+    test.done();
+  },
+  'jsonclone - stringify/parse roundtrip preserves properties': function(test) {
+    test.expect(1);
+    var stringified = jsonclone.stringify(testObj);
+    var theClone = jsonclone.parse(stringified);
+    test.equal(theClone.sayMyName(), 'sean voeller', 'should be sean voeller');
+    test.done();
+  },
+  'jsonclone - parse strips metadata object': function(test) {
+    test.expect(1);
+    var clone = jsonclone.parse(jsonclone.stringify(testObj));
+    test.ok(typeof clone.__jsonclone__ === 'undefined');
     test.done();
   }
 };
