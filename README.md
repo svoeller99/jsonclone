@@ -16,31 +16,6 @@ var clone = jsonclone.parse(jsonString);          // clone with functions intact
 clone = jsonclone.clone(yourObject);              // clone shortcut
 ```
 
-Install with cli command
-
-```sh
-$ npm install -g jsonclone
-$ jsonclone --help
-$ jsonclone --version
-```
-
-
-```sh
-# creates a browser.js
-$ grunt browserify
-```
-
-
-
-## Documentation
-
-_(Coming soon)_
-
-
-## Examples
-
-_(Coming soon)_
-
 
 ## Contributing
 
