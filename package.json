@@ -2,7 +2,7 @@
   "name": "jsonclone",
   "version": "0.0.0",
   "main": "lib/jsonclone.js",
-  "description": "The best module ever.",
+  "description": "library to allow jsonification of objects with behavior preserved via a simple metadata system",
   "homepage": "https://github.com/svoeller99/jsonclone",
   "bugs": "https://github.com/svoeller99/jsonclone/issues",
   "author": {

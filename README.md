@@ -1,6 +1,6 @@
 # jsonclone [![Build Status](https://secure.travis-ci.org/svoeller99/jsonclone.png?branch=master)](http://travis-ci.org/svoeller99/jsonclone)
 
-> The best module ever.
+> library to allow jsonification of objects with behavior preserved via a simple metadata system.
 
 
 ## Getting Started
@@ -9,7 +9,11 @@ Install the module with: `npm install jsonclone`
 
 ```js
 var jsonclone = require('jsonclone');
-jsonclone.awesome(); // "awesome"
+
+var jsonString = jsonclone.stringify(yourObject); // json representation with functions encoded
+var clone = jsonclone.parse(jsonString);          // clone with functions intact
+
+clone = jsonclone.clone(yourObject);              // clone shortcut
 ```
 
 Install with cli command
