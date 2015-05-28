@@ -40,20 +40,20 @@ exports.jsonclone = {
   },
   'jsonclone - clone preserves function properties': function(test) {
     test.expect(1);
-    var theClone = jsonclone.clone(testObj);
+    var theClone = jsonclone.cloneOLD(testObj);
     test.equal(theClone.sayMyName(), 'sean voeller', 'should be sean voeller');
     test.done();
   },
   'jsonclone - stringify/parse roundtrip preserves properties': function(test) {
     test.expect(1);
-    var stringified = jsonclone.stringify(testObj);
-    var theClone = jsonclone.parse(stringified);
+    var stringified = jsonclone.stringifyOLD(testObj);
+    var theClone = jsonclone.parseOLD(stringified);
     test.equal(theClone.sayMyName(), 'sean voeller', 'should be sean voeller');
     test.done();
   },
   'jsonclone - parse strips metadata object': function(test) {
     test.expect(1);
-    var clone = jsonclone.parse(jsonclone.stringify(testObj));
+    var clone = jsonclone.parseOLD(jsonclone.stringifyOLD(testObj));
     test.ok(typeof clone.__jsonclone__ === 'undefined');
     test.done();
   }
