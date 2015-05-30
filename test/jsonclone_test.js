@@ -73,14 +73,14 @@ exports.jsonclone = {
   // new stuff
   'jsonclone - has a registry that stores and serves up types': function(test) {
     jsonclone.types.add(Cog);
-    var cog = jsonclone.types.get('Cog');
-    test.equal(Cog, cog, 'should be the same constructor function');
-    new cog(1).chirp();
+    var CogCtor = jsonclone.types.get('Cog');
+    test.equal(Cog, CogCtor, 'should be the same constructor function');
+    new CogCtor(1).chirp();
     test.equal(cogChirp, "Hello I am cog 1");
 
     jsonclone.types.add('myWheel', Wheel);
     var wheel = jsonclone.types.get('myWheel');
     test.equal(Wheel, wheel, 'should be the same constructor function when registered with specific name');
     test.done();
-  }
+  },
 };
