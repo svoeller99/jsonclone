@@ -83,4 +83,10 @@ exports.jsonclone = {
     test.equal(Wheel, wheel, 'should be the same constructor function when registered with specific name');
     test.done();
   },
+
+  'jsonclone - it can get your object\'s constructor function name, man!':function(test) {
+    var ctorName = jsonclone.getConstructorName(new Cog());
+    test.equal('Cog', ctorName, 'constructor name');
+    test.done();
+  },
 };
