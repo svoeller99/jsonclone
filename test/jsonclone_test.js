@@ -89,4 +89,15 @@ exports.jsonclone = {
     test.equal('Cog', ctorName, 'constructor name');
     test.done();
   },
+
+  'jsonclone - it can serialize type name into json':function(test) {
+    var obj = new Cog(1);
+
+    var json = jsonclone.stringify(obj);
+
+    var parsed = JSON.parse(json);
+    test.equal(parsed.__jsonCloneType__, 'Cog', 'serialized type info');
+    test.equal(typeof obj.__jsonCloneType__, 'undefined', 'should not impact source object');
+    test.done();
+  }
 };
