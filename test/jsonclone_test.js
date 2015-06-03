@@ -22,60 +22,22 @@ var jsonclone = require('../lib/jsonclone.js');
  test.ifError(value)
  */
 
-var MyStuff = function (foo, bar) {
-  this.foo = foo;
-  this.bar = bar;
-};
-
-MyStuff.prototype.sayMyName = function () {
-  return this.foo + ' ' + this.bar;
-};
-
-var testObj = new MyStuff('sean', 'voeller');
-
-var cogChirp;
-
 function Cog(id) {
   this.id = id;
 }
 Cog.prototype.chirp = function () {
-  return cogChirp = "Hello I am cog " + this.id;
+  return "Hello I am cog " + this.id;
 };
 function Wheel() {
-
 }
 
 exports.jsonclone = {
-  setUp: function (done) {
-    // setup here
-    done();
-  },
-  'jsonclone - clone preserves function properties': function (test) {
-    test.expect(1);
-    var theClone = jsonclone.cloneOLD(testObj);
-    test.equal(theClone.sayMyName(), 'sean voeller', 'should be sean voeller');
-    test.done();
-  },
-  'jsonclone - stringify/parse roundtrip preserves properties': function (test) {
-    test.expect(1);
-    var stringified = jsonclone.stringifyOLD(testObj);
-    var theClone = jsonclone.parseOLD(stringified);
-    test.equal(theClone.sayMyName(), 'sean voeller', 'should be sean voeller');
-    test.done();
-  },
-  'jsonclone - parse strips metadata object': function (test) {
-    test.expect(1);
-    var clone = jsonclone.parseOLD(jsonclone.stringifyOLD(testObj));
-    test.ok(typeof clone.__jsonclone__ === 'undefined');
-    test.done();
-  },
 
-  // new stuff
   'jsonclone - has a registry that stores and serves up types': function (test) {
     jsonclone.types.add(Cog);
     var CogCtor = jsonclone.types.get('Cog');
     test.equal(Cog, CogCtor, 'should be the same constructor function');
-    new CogCtor(1).chirp();
+    var cogChirp = new CogCtor(1).chirp();
     test.equal(cogChirp, "Hello I am cog 1");
 
     jsonclone.types.add('myWheel', Wheel);
