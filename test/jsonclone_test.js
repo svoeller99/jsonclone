@@ -74,4 +74,11 @@ exports.jsonclone = {
 
     test.done();
   },
+
+  'jsonClone - it clones objects': function(test) {
+    var obj = new Cog(5);
+    var cloned = jsonclone.clone(obj);
+    test.equal(obj.chirp(), cloned.chirp(), 'should have a legit clone here');
+    test.done();
+  }
 };
