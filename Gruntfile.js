@@ -8,16 +8,10 @@ module.exports = function (grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    nodeunit: {
-      files: ['test/**/*_test.js']
-    },
     mochaTest: {
       test: {
         options: {
-          reporter: 'spec',
-          //captureFile: 'results.txt', // Optionally capture the reporter output to a file 
-          //quiet: false, // Optionally suppress output to standard out (defaults to false) 
-          //clearRequireCache: false // Optionally clear the require cache before running tests (defaults to false) 
+          reporter: 'spec'
         },
         src: ['test/**/*.spec.js']
       }
@@ -37,6 +31,7 @@ module.exports = function (grunt) {
         src: ['test/**/*.js']
       }
     },
+    // FIXME: replace with karma
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
@@ -44,15 +39,15 @@ module.exports = function (grunt) {
       },
       lib: {
         files: '<%= jshint.lib.src %>',
-        tasks: ['jshint:lib', 'nodeunit']
+        tasks: ['jshint:lib', 'mochaTest']
       },
       test: {
         files: '<%= jshint.test.src %>',
-        tasks: ['jshint:test', 'nodeunit']
+        tasks: ['jshint:test', 'mochaTest']
       }
     }
   });
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'nodeunit', 'mochaTest']);
+  grunt.registerTask('default', ['jshint', 'mochaTest']);
 };
