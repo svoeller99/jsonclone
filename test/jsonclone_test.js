@@ -28,23 +28,25 @@ function Cog(id) {
 Cog.prototype.chirp = function () {
   return "Hello I am cog " + this.id;
 };
-function Wheel() {
-}
+// function Wheel() {
+// }
+
+jsonclone.types.add(Cog);
 
 exports.jsonclone = {
 
-  'jsonclone - has a registry that stores and serves up types': function (test) {
-    jsonclone.types.add(Cog);
-    var CogCtor = jsonclone.types.get('Cog');
-    test.equal(Cog, CogCtor, 'should be the same constructor function');
-    var cogChirp = new CogCtor(1).chirp();
-    test.equal(cogChirp, "Hello I am cog 1");
+  // 'jsonclone - has a registry that stores and serves up types': function (test) {
+  //   jsonclone.types.add(Cog);
+  //   var CogCtor = jsonclone.types.get('Cog');
+  //   test.equal(Cog, CogCtor, 'should be the same constructor function');
+  //   var cogChirp = new CogCtor(1).chirp();
+  //   test.equal(cogChirp, "Hello I am cog 1");
 
-    jsonclone.types.add('myWheel', Wheel);
-    var wheel = jsonclone.types.get('myWheel');
-    test.equal(Wheel, wheel, 'should be the same constructor function when registered with specific name');
-    test.done();
-  },
+  //   jsonclone.types.add('myWheel', Wheel);
+  //   var wheel = jsonclone.types.get('myWheel');
+  //   test.equal(Wheel, wheel, 'should be the same constructor function when registered with specific name');
+  //   test.done();
+  // },
 
   'jsonclone - it can get your object\'s constructor function name, man!': function (test) {
     var ctorName = jsonclone.getConstructorName(new Cog());
